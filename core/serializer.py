@@ -1,7 +1,7 @@
 
 
 # Libs
-from sekeer import Sekeer
+from .sekeer import Sekeer
 
 
 class BaseSerializer:
@@ -35,7 +35,7 @@ class BaseSerializer:
                 'price':sekeer.find(item,self.__model.price),
                 'origin':origin,
                 'preview':preview,
-                'free_shipping':sekeer.find(item,self.__model.free_shipping)
+                #'free_shipping':sekeer.find(item,self.__model.free_shipping)
             }
             
             

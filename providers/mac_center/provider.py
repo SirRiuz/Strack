@@ -1,7 +1,7 @@
 
 
 # Libs
-from provider import BaseProvider
+from core.provider import BaseProvider
 from providers.mac_center.serializer import CenterSerailizer
 from providers.mac_center.settings import PROVIDER_URL
 

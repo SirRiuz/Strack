@@ -2,7 +2,7 @@
 
 
 # Libs
-from provider import BaseProvider
+from core.provider import BaseProvider
 from providers.linio.serializer import LinioSerializer
 from providers.linio.settings import PAYLOAD_DIR,BODY,PROVIDER_URL
 
@@ -23,7 +23,6 @@ class Linio(BaseProvider):
 
     
     def get_data(self) -> (dict):
-        print('Get daa')
         response_data = super().get_data()
         data = response_data.get('searchResult',[])
         if data:

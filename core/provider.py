@@ -2,7 +2,7 @@
 
 # Libs
 import json
-from burpeer import parse_request
+from .burpeer import parse_request
 import requests
 from urllib3.exceptions import InsecureRequestWarning
 from urllib3 import disable_warnings
@@ -50,10 +50,17 @@ class BaseProvider:
                 )
             
             if self.__method == 'GET':
+                headers = {}
+                
+                if self.payload:
+                    request_data = parse_request(self.payload)
+                    headers = request_data[0]
+                
                 response = requests.get(
                     timeout=5000,
                     url=self.__get_search_params(),
-                    verify=False
+                    verify=False,
+                    headers=headers
                 )
             
             

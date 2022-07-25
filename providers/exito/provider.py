@@ -4,7 +4,7 @@
 
 #Libs
 import json
-from provider import BaseProvider
+from core.provider import BaseProvider
 from providers.exito.serializer import ExitoSerializer
 from providers.exito.settings import PROVIDER_URL
 

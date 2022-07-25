@@ -1,13 +1,15 @@
 
 
+
 # Libs
 from core.models import BaseProductModel
-from .settings import MEDIA_URL
+from providers.olx.settings import ORIGIN_URL
 from core.serializer import BaseSerializer
 
 
 
-class FalabellaSerializer(BaseSerializer):
+
+class OlxSerializer(BaseSerializer):
     
 
     def __init__(self,**kwargs):
@@ -15,14 +17,14 @@ class FalabellaSerializer(BaseSerializer):
             **kwargs,
             model=self.Model
         )
-    
+        
         
     class Model(BaseProductModel):
-        id:str = 'productId'
-        name:str = 'displayName'
-        origin:str = 'url'
-        price:float = 'prices:0:price:0'
-        preview:str = f'{MEDIA_URL} + media:id'
+        id:str = 'id'
+        name:str = 'title'
+        preview:str = 'images:0:url'
+        origin:str = f'{ORIGIN_URL} + :id'
+        price:float = 'price:value:raw'
 
 
 

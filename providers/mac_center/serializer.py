@@ -3,9 +3,9 @@
 
 
 # Libs
-from models import BaseProductModel
+from core.models import BaseProductModel
 from providers.mac_center.settings import (PROVIDER_BASE_URL)
-from serializer import BaseSerializer
+from core.serializer import BaseSerializer
 
 
 

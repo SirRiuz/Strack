@@ -5,15 +5,9 @@
 #from providers.linio.provider import *
 
 
-from consumers.testing import *
-from consumers.smartphone import *
-from providers.linio.provider import *
+from consumers.music import MusicConsumer
+#from consumers.smartphone import SmartPhoneConsumer
 
 
 
-
-
-
-TestConsumer().search('audifonos redmi airdots')
-
-
+MusicConsumer().search('Redmi note'.lower())

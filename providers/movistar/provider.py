@@ -3,11 +3,10 @@
 
 
 # Settings
-import json
 from .settings import (BODY,PAYLOAD_DIR,PROVIDER_URL)
 
 # Libs
-from provider import BaseProvider
+from core.provider import BaseProvider
 
 
 # Serializer

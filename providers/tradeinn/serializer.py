@@ -2,8 +2,8 @@
 
 
 # Libs
-from models import BaseProductModel
-from serializer import BaseSerializer
+from core.models import BaseProductModel
+from core.serializer import BaseSerializer
 
 
 

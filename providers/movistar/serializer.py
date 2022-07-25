@@ -2,9 +2,9 @@
 
 
 # Libs
-from models import BaseProductModel
+from core.models import BaseProductModel
 from .settings import ORIGIN_BASE_URL,PROVIDER_BASE_URL
-from serializer import BaseSerializer
+from core.serializer import BaseSerializer
 
 
 

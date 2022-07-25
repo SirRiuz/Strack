@@ -9,7 +9,7 @@ from .settings import ( PROVIDER_URL
 
 
 # Libs
-from provider import BaseProvider
+from core.provider import BaseProvider
 
 
 

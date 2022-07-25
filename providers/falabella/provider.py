@@ -4,7 +4,7 @@
 # Libs
 from providers.falabella.settings import PROVIDER_URL
 from .serializer import FalabellaSerializer
-from provider import BaseProvider
+from core.provider import BaseProvider
 
 
 
