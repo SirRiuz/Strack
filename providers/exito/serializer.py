@@ -16,7 +16,6 @@ class ExitoSerializer(BaseSerializer):
         )
         
     class Model(BaseProductModel):
-        
         id:str = 'productId'
         name:str = 'productName'
         origin:str = 'link'        

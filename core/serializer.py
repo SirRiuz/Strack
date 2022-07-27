@@ -35,6 +35,7 @@ class BaseSerializer:
                 'price':sekeer.find(item,self.__model.price),
                 'origin':origin,
                 'preview':preview,
+                'provider':{}
                 #'free_shipping':sekeer.find(item,self.__model.free_shipping)
             }
             

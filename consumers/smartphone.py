@@ -26,7 +26,7 @@ class SmartPhoneConsumer(BaseConsumer):
         MacCenter,
         Tradeinn,
         MercadoLibre,
-        Exito
+        #Exito              Very slow
     ]
 
     
