@@ -20,11 +20,11 @@ from providers.linio.provider import Linio
 class TestConsumer(BaseConsumer):
     
     provider_list = [
-        Olx,
-        Linio,
-        Movistar,
-        Falabella,
         MacCenter,
+        Olx,
+        Falabella,
+        Linio,
         Tradeinn,
-        MercadoLibre
+        Movistar,
+        Exito
     ]

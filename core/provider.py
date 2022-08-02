@@ -2,18 +2,19 @@
 
 # Libs
 import json
-from .burpeer import parse_request
-import requests
-from urllib3.exceptions import InsecureRequestWarning
+import grequests
 from urllib3 import disable_warnings
+from core.burpeer import parse_request
+from urllib3.exceptions import InsecureRequestWarning
 
 
 
 class BaseProvider:
     
-    def __init__(self,**kwargs) -> (None):
-        self.payload = kwargs.get('payload','')
-        
+    serializer_class = None
+    
+    def __init__(self,**kwargs):
+        self.__payload = kwargs.get('payload','')
         self.__body = kwargs.get('body','')
         self.__method = kwargs.get('method','get')
         self.__url = kwargs.get('url','')
@@ -21,61 +22,35 @@ class BaseProvider:
     
     
     def __get_search_params(self) -> (str):
-        return self.__url.replace('query_keyboard',self.__keyboard)
+        return self.__url.replace('query_keyboard','sss')
 
     
     def __get_params(self) -> (dict):
-        return json.loads(
-            self.__body.replace(
-                'query_keyboard',
-                self.__keyboard
+        return json.loads(self.__body.replace('query_keyboard',self.__keyboard))
+    
+    
+    def get_request(self) -> (grequests.AsyncRequest):
+        
+        if self.__method == 'post':
+            disable_warnings(InsecureRequestWarning)
+            header = parse_request(self.__payload)
+            return grequests.post(
+                self.__url,
+                headers=header[0],
+                json=self.__get_params(),
+                verify=False,
+                timeout=.8
             )
-        )
-    
-    
-    def __on_request(self) -> (dict):
-        disable_warnings(InsecureRequestWarning)
         
-        try:
-            response = None            
-            if self.__method == 'POST':
-                request_data = parse_request(self.payload)
-                headers = request_data[0]
-                response = requests.post(
-                    headers=headers,
-                    timeout=5000,
-                    url=self.__url,
-                    json=self.__get_params(),
-                    verify=False
-                )
-            
-            if self.__method == 'GET':
-                headers = {}
-                
-                if self.payload:
-                    request_data = parse_request(self.payload)
-                    headers = request_data[0]
-                
-                response = requests.get(
-                    timeout=5000,
-                    url=self.__get_search_params(),
-                    verify=False,
-                    headers=headers
-                )
-            
-            
-            if response.ok:
-                return json.loads(response.text)
-        
-        
-        except Exception as e:
-            print(e)
-            return
 
-    
-    def get_data(self) -> (dict): 
-        return self.__on_request()
-    
-    
-    
-    
+        return grequests.get(
+            self.__get_search_params(),
+            timeout=.8
+        )
+        
+        
+
+    def __str__(self) -> (str):
+        return f"<{self.__method.upper()} '{self.__url[0:int(len(self.__url)/4)]}...'>"
+        
+

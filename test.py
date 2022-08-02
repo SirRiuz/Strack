@@ -11,11 +11,10 @@
 #from providers.mercadolibre.provider import *
 #from providers.linio.provider import *
 #from providers.falabella.provider import *
-import json
 from consumers.testing import TestConsumer
 
 
-result = TestConsumer().search('Poco x3'.lower())
-open('data.json','w').write(
-    json.dumps(result,indent=2)
-)
+result = TestConsumer().search('Calculadora cientifica en oferta con graficadora'.lower())
+
+
+

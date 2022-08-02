@@ -17,24 +17,11 @@ from .serializer import MovistarSerializer
 
 class Movistar(BaseProvider):
 
-        
-    def __init__(self,**kwargs) -> (None):
-        self.__keyboard = kwargs.get('keyboard','')
+    def __init__(self,**kwargs):
         super().__init__(
             **kwargs,body=BODY,url=PROVIDER_URL,
-            payload=PAYLOAD_DIR,method='POST'
+            payload=PAYLOAD_DIR,method='post'
         )
-
-
-    def get_data(self) -> (dict):
-        response_data = super().get_data()['searchResult']
-        serialaizer = MovistarSerializer(
-            data=response_data,
-            keyboard=self.__keyboard
-        ).serialize()
-        
-        return serialaizer
-
 
 
 

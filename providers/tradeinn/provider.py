@@ -15,24 +15,11 @@ from core.provider import BaseProvider
 
 class Tradeinn(BaseProvider):
 
-    def __init__(self,**kwargs) -> (None):
-        self.__keyboard = kwargs.get('keyboard','')
+    def __init__(self,**kwargs):
         super().__init__(
             **kwargs,body=BODY,url=PROVIDER_URL,
-            payload=PAYLOAD_DIR,method='POST'
+            payload=PAYLOAD_DIR,method='post'
         )
-
-
-    def get_data(self) -> (dict):
-        response_data = super().get_data()
-        data = response_data['results'][0]['hits'] if response_data else []
-        result = TradeinnSerializer(
-            data=data,
-            keyboard=self.__keyboard    
-        ).serialize()
-        
-        
-        return result
 
 
 

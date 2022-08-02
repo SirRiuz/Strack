@@ -9,11 +9,10 @@ from core.serializer import BaseSerializer
 
 class ExitoSerializer(BaseSerializer):
     
+    
     def __init__(self,**kwargs):
-        super().__init__(
-            **kwargs,
-            model=self.Model
-        )
+        super().__init__(**kwargs,model=self.Model)
+        
         
     class Model(BaseProductModel):
         id:str = 'productId'
