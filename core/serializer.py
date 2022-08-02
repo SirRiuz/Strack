@@ -29,16 +29,31 @@ class BaseSerializer:
             preview = sekeer.find(item,self.__model.preview)
             preview = preview.replace('->',':') if preview and type(preview) == str else None
             
+            
+            free_shipping = sekeer.find(item,self.__model.free_shipping)
+            if type(free_shipping) == str:
+                free_shipping = True if free_shipping == 'free_shipping' else False
+            
+            
+            score = sekeer.find(item,self.__model.score)
+            score = 1 if not score else score
+            score = 5.0 if score > 5.0 else score
+            
             item_data = {
                 'id':sekeer.find(item,self.__model.id),
                 'name':sekeer.find(item,self.__model.name),
                 'price':sekeer.find(item,self.__model.price),
                 'origin':origin,
                 'preview':preview,
-                'provider':{}
+                'provider':{},
+                'score':score,
+                'description':sekeer.find(item,self.__model.description),
+                'free_shipping':bool(free_shipping)
                 #'free_shipping':sekeer.find(item,self.__model.free_shipping)
             }
             
+            
+            #'free_shipping'
             
             if type(item_data['price']) == str:
                 item_data['price'] = int(

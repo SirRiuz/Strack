@@ -9,7 +9,9 @@ class BaseProductModel:
     origin:str = 'value'
     price:float = 'value'
     price_discount:float = 'value'
-    free_shipping:bool = False
+    free_shipping:bool = 'value'
+    score:float = 'value'
+    description = 'value'
 
 
 

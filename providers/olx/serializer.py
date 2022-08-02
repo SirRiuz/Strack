@@ -25,6 +25,8 @@ class OlxSerializer(BaseSerializer):
         preview:str = 'images:0:url'
         origin:str = f'{ORIGIN_URL} + :id'
         price:float = 'price:value:raw'
+        score = 'score'
+        description = 'description'
 
 
 

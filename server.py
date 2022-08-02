@@ -7,8 +7,7 @@ from httplib2 import Response
 from consumers.testing import TestConsumer
 from settings import API_VERSION, DEBUG
 import time
-
-from storage import add_to_storage, get_to_storage
+from storage import get_to_storage
 
 
 
@@ -33,33 +32,45 @@ def internal_error(e):
 
 @app.route(f'/{API_VERSION}/search/',methods=['GET'])
 def search() -> (Response):
+    
+    """
+      Esta ruta es la encargada de realizar
+      las busquedar y mostrarme los resultados.
+      
+      Querys:
+      
+        q - Query de lo que se va a buscar [REQUERIDO]
+        score - Permite filtrar los resultados por estrellas
+        range - Permite filtrar los resultados por rango de precio
+
+    """
+    
+    
     start = time.time()
-    cacheMode = True
     query = request.args.get('q')
-    
-    
-    data = get_to_storage(query)
-    
-    if not data:
-        data = TestConsumer().search(query.lower())
-        add_to_storage(query,data)
-        cacheMode = False
-    
-    
+    storage_data = get_to_storage(query)
+    result = TestConsumer().search(
+        query.lower(),
+        filter={
+            'score':request.args.get('score'),
+            'range':request.args.get('range')
+        },
+        cache=storage_data
+    )
     end = time.time()
     
     return ({
         'status':'ok',
         'meta':{
-            'length':len(data['data']),
+            'length':len(result['data']),
             'query':query,
             #'provider':None,
             #'limit':None,
             'time-response':f'{int(end - start)}s',
-            'providers':data['providers'],
-            'cache':cacheMode
+            'providers':result['providers'],
+            'cache':bool(storage_data)
         },
-        'data':data['data']
+        'data':result['data']
     },200)
 
 
@@ -68,6 +79,7 @@ def search() -> (Response):
 
 
 app.run(
+    host='0.0.0.0',
     debug=DEBUG
 )
 

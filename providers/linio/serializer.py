@@ -24,3 +24,4 @@ class LinioSerializer(BaseSerializer):
         preview: str = 'image'
         origin: str = 'path'
         free_shipping:bool = 'hasFreeShipping'
+        score:float = 'seller:rating'

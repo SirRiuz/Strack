@@ -21,5 +21,7 @@ class MeliSerializer(BaseSerializer):
         preview:str = 'pictures:stack:retina'
         price:float = 'price:amount'
         origin:str = 'permalink'
+        score:float = 'reviews:rating_average'
+        free_shipping:bool = 'tags:0'
         
         
