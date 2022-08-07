@@ -15,37 +15,22 @@ app = Flask(__name__)
 
 
 
-
 @app.errorhandler(500)
 def internal_error(e):
     return ({
         'status':'error',
-        'error':{
-            'messege':str(e)
-        }
+        'error':{'messege':str(e)}
     },500)
-
-
 
 
 
 
 @app.route(f'/{API_VERSION}/search/',methods=['GET'])
 def search() -> (Response):
-    
     """
       Esta ruta es la encargada de realizar
       las busquedar y mostrarme los resultados.
-      
-      Querys:
-      
-        q - Query de lo que se va a buscar [REQUERIDO]
-        score - Permite filtrar los resultados por estrellas
-        range - Permite filtrar los resultados por rango de precio
-
     """
-    
-    
     start = time.time()
     query = request.args.get('q')
     storage_data = get_to_storage(query)

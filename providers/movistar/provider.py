@@ -17,6 +17,8 @@ from .serializer import MovistarSerializer
 
 class Movistar(BaseProvider):
 
+    serializer_class = MovistarSerializer
+
     def __init__(self,**kwargs):
         super().__init__(
             **kwargs,body=BODY,url=PROVIDER_URL,

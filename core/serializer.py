@@ -1,76 +1,84 @@
 
 
 # Libs
+from http.client import OK
+import json
+from requests import Response
+from core.models import BaseProductModel
 from .sekeer import Sekeer
 
 
 class BaseSerializer:
-        
-    def __init__(self,**kwargs) -> (None):
-        self.__model = kwargs.get('model')
-        self.__keyboard = kwargs.get('keyboard','')
-        self.data = kwargs.get('data',[])    
-          
-        
-    def serialize(self) -> (list):
-                
-        if not self.data:
-            return []
-        
-        data = []
-        sekeer = Sekeer()
-        
-        for item in self.data:
-            
-            origin = sekeer.find(item,self.__model.origin)
-            origin = origin.replace('->',':') if origin and type(origin) == str else None
-            
-            
-            preview = sekeer.find(item,self.__model.preview)
-            preview = preview.replace('->',':') if preview and type(preview) == str else None
-            
-            
-            free_shipping = sekeer.find(item,self.__model.free_shipping)
-            if type(free_shipping) == str:
-                free_shipping = True if free_shipping == 'free_shipping' else False
-            
-            
-            score = sekeer.find(item,self.__model.score)
-            score = 1 if not score else score
-            score = 5.0 if score > 5.0 else score
-            
-            item_data = {
-                'id':sekeer.find(item,self.__model.id),
-                'name':sekeer.find(item,self.__model.name),
-                'price':sekeer.find(item,self.__model.price),
-                'origin':origin,
-                'preview':preview,
-                'provider':{},
-                'score':score,
-                'description':sekeer.find(item,self.__model.description),
-                'free_shipping':bool(free_shipping)
-                #'free_shipping':sekeer.find(item,self.__model.free_shipping)
-            }
-            
-            
-            #'free_shipping'
-            
-            if type(item_data['price']) == str:
-                item_data['price'] = int(
-                    item_data['price'].replace('.','')
-                )
-            
-            if item_data['name'] and item_data['price']:
-                item_data['name'] = item_data['name'].lower()
-                if item_data['name'].count(self.__keyboard) > 0:
-                    data.append(item_data)
-               
-               
-                
-                
-        return data
 
-    
-    
-    
-    
+    query_dataset = None
+
+    def serialize(self,keyboard:str,response:Response,model:BaseProductModel) -> (list):
+        
+        serialize_data = []
+        
+        if response and response.status_code == OK:
+            response_data = json.loads(response.text)
+            open('data.json','w').write(
+                json.dumps(response_data,indent=2)
+            )
+            dataset = Sekeer().find(response_data,self.query_dataset)
+            sekeer = Sekeer()
+            
+            
+            if not dataset:
+                return serialize_data
+            
+            for data_item in dataset:
+                
+                # Score
+                score = sekeer.find(data_item,model.score)
+                score = score if score else 0
+                score = 5 if score > 5 else score
+                
+                
+                # Price
+                original_price = sekeer.find(data_item,model.original_price)
+                original_price = float(original_price.replace('.','')) if type(original_price) == str and original_price else original_price
+
+                actual_price = sekeer.find(data_item,model.actual_price)
+                #actual_price = actual_price if type(actual_price) != list else None
+                #actual_price = float(actual_price.replace('.','')) if type(actual_price) == str and actual_price else actual_price
+
+                is_descount = bool(original_price and actual_price)
+                is_descount = False if original_price == actual_price else is_descount
+                
+
+                # discount_label
+                discount_label = sekeer.find(data_item,model.discount_label)
+                discount_label = f'{int(discount_label)}%' if not type(discount_label) is str and discount_label  else discount_label
+                
+                origin = sekeer.find(data_item,model.origin)
+                origin = origin.replace('->',':') if type(origin) is str else origin
+                
+                preview = sekeer.find(data_item,model.preview)
+                preview = preview.replace('->',':') if type(preview) is str else preview
+                
+                #if actual_price or original_price:
+                serialize_data.append({
+                    'product':{
+                        'id':sekeer.find(data_item,model.id),
+                        'pricing':{
+                            'actual_price':actual_price,
+                            'original_price':original_price,
+                            'is_descount':is_descount,
+                            'discount_label':discount_label
+                        },
+                        'is_free_shipping':bool(sekeer.find(data_item,model.free_shipping)),
+                        'name':sekeer.find(data_item,model.name),
+                        'origin':origin,
+                        'preview':preview,
+                        'description':sekeer.find(data_item,model.description),
+                        'score':score
+                        }
+                    })
+                
+        
+        return serialize_data
+        #print(json.dumps(serialize_data,indent=2))
+
+

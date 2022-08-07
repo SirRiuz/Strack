@@ -8,20 +8,17 @@ from core.serializer import BaseSerializer
 
 class MeliSerializer(BaseSerializer):
     
-    def __init__(self,**kwargs):
-        super().__init__(
-            **kwargs,
-            model=self.Model
-        )
+    query_dataset = 'results'
         
-        
-    class Model(BaseProductModel):
+    class model(BaseProductModel):
         id:str = 'id'
         name:str = 'title'
         preview:str = 'pictures:stack:retina'
-        price:float = 'price:amount'
+        actual_price:float = 'price:amount'
+        original_price = 'price:original_price'
         origin:str = 'permalink'
         score:float = 'reviews:rating_average'
         free_shipping:bool = 'tags:0'
+        discount_label:str = 'price:discount_label:text'
         
         

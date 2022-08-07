@@ -11,20 +11,15 @@ from core.serializer import BaseSerializer
 
 class CenterSerailizer(BaseSerializer):
     
-
-    def __init__(self,**kwargs):
-        super().__init__(
-            **kwargs,
-            model=self.Model
-        )
+    query_dataset = 'items'
         
-    class Model(BaseProductModel):
+    class model(BaseProductModel):
         id:str = 'seoUrlSlugDerived'
         name:str = 'displayName'
         preview:str = f'{PROVIDER_BASE_URL} + :primaryMediumImageURL'
         origin:str = f'{PROVIDER_BASE_URL} + :route'
-        price:float = 'childSKUs:0:salePrice > childSKUs:0:listPrice'
-
+        original_price: float = 'childSKUs:0:listPrice'
+        actual_price:float = 'childSKUs:0:salePrice'
 
 
 

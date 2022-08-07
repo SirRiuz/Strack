@@ -3,7 +3,7 @@
 
 
 # Settings
-from providers.olx.serializer import OlxSerializer
+from providers.shopee.serializer import ShopeeSerializer
 from .settings import PROVIDER_URL
 
 
@@ -12,9 +12,9 @@ from core.provider import BaseProvider
 
 
 
-class Olx(BaseProvider):
+class Shopee(BaseProvider):
         
-    serializer_class = OlxSerializer
+    serializer_class = ShopeeSerializer
         
     def __init__(self,**kwargs):
         super().__init__(**kwargs,url=PROVIDER_URL)

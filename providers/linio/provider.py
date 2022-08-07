@@ -10,9 +10,9 @@ from providers.linio.settings import PAYLOAD_DIR,BODY,PROVIDER_URL
 
 class Linio(BaseProvider):
 
+    serializer_class = LinioSerializer
 
     def __init__(self,**kwargs):
-        self.__keyboard = kwargs.get('keyboard','')
         super().__init__(
             **kwargs,
             payload=PAYLOAD_DIR,

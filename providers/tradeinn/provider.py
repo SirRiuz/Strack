@@ -14,6 +14,8 @@ from core.provider import BaseProvider
 
 
 class Tradeinn(BaseProvider):
+    
+    serializer_class = TradeinnSerializer
 
     def __init__(self,**kwargs):
         super().__init__(

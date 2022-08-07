@@ -12,6 +12,7 @@ from urllib3.exceptions import InsecureRequestWarning
 class BaseProvider:
     
     serializer_class = None
+    TIMEOUT = .85
     
     def __init__(self,**kwargs):
         self.__payload = kwargs.get('payload','')
@@ -22,7 +23,7 @@ class BaseProvider:
     
     
     def __get_search_params(self) -> (str):
-        return self.__url.replace('query_keyboard','sss')
+        return self.__url.replace('query_keyboard',self.__keyboard)
 
     
     def __get_params(self) -> (dict):
@@ -30,7 +31,7 @@ class BaseProvider:
     
     
     def get_request(self) -> (grequests.AsyncRequest):
-        
+                
         if self.__method == 'post':
             disable_warnings(InsecureRequestWarning)
             header = parse_request(self.__payload)
@@ -39,13 +40,13 @@ class BaseProvider:
                 headers=header[0],
                 json=self.__get_params(),
                 verify=False,
-                timeout=.8
+                timeout=self.TIMEOUT
             )
         
 
         return grequests.get(
             self.__get_search_params(),
-            timeout=.8
+            timeout=self.TIMEOUT
         )
         
         

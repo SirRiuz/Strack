@@ -8,10 +8,10 @@ from providers.mac_center.settings import PROVIDER_URL
 
 
 class MacCenter(BaseProvider):
-    
+
+    serializer_class = CenterSerailizer
     
     def __init__(self, **kwargs):
-        self.__keyboard = kwargs.get('keyboard','')
         super().__init__(**kwargs,url=PROVIDER_URL)
         
 

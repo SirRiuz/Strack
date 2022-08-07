@@ -9,16 +9,14 @@ from core.serializer import BaseSerializer
 
 class FalabellaSerializer(BaseSerializer):
     
-
-    def __init__(self,**kwargs):
-        super().__init__(**kwargs,model=self.Model)
-    
+    query_dataset = 'data:results'
         
-    class Model(BaseProductModel):
+    class model(BaseProductModel):
         id:str = 'productId'
         name:str = 'displayName'
         origin:str = 'url'
-        price:float = 'prices:0:price:0'
+        actual_price:float = 'prices:0:price:0'
+        original_price:float = 'prices:1:price:0'
         preview:str = f'{MEDIA_URL} + media:id'
 
 

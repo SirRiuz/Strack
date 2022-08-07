@@ -11,20 +11,14 @@ from core.serializer import BaseSerializer
 
 class MovistarSerializer(BaseSerializer):
     
-
-    def __init__(self,**kwargs):
-        super().__init__(
-            **kwargs,
-            model=self.Model
-        )
+    query_dataset = 'searchResult'
         
-        
-    class Model(BaseProductModel):
+    class model(BaseProductModel):
         id:str = 'offeringId'
         name:str = 'offeringName'
         preview:str = f'{PROVIDER_BASE_URL} + :picUrl'
         origin:str = f'{ORIGIN_BASE_URL} + :offeringId'
-        price:float = 'monthlyFee'
+        actual_price:float = 'monthlyFee'
 
 
 

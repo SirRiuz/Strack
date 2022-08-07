@@ -9,18 +9,14 @@ from core.serializer import BaseSerializer
 
 class TradeinnSerializer(BaseSerializer):
     
-    def __init__(self,**kwargs):
-        super().__init__(
-            **kwargs,
-            model=self.Model
-        )
-            
-    class Model(BaseProductModel):
+    query_dataset = 'results:0:hits'
+    
+    class model(BaseProductModel):
         id:str = 'objectID'
         name:str = 'model:spa'
         preview:str = 'src_photo'
         origin:str = 'link_product'
-        price:float = 'precio_str:precio_43#COL$'
+        actual_price:float = 'precio_str:precio_43#COL$'
 
 
 

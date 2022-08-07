@@ -9,12 +9,9 @@ from core.serializer import BaseSerializer
 
 class ExitoSerializer(BaseSerializer):
     
-    
-    def __init__(self,**kwargs):
-        super().__init__(**kwargs,model=self.Model)
+    query_dataset = 'queryData:0:data'
         
-        
-    class Model(BaseProductModel):
+    class model(BaseProductModel):
         id:str = 'productId'
         name:str = 'productName'
         origin:str = 'link'        

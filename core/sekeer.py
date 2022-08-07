@@ -98,11 +98,7 @@ class Sekeer:
                 query=query_list[0]
             )
             
-            if find_result and type(find_result) == str:
-                query_result = find_result.replace(replace,'')
-            else:
-                query_result = find_result
-            
+            query_result = str(find_result).replace(replace,'')
             return query_result        
         
         return self.__find(data=data,query=query)
