@@ -24,7 +24,6 @@ def get_to_storage(query:str) -> (dict):
             os.remove(STORAGE_ITEM_DIR)
             return
             
-            
         return data
 
 

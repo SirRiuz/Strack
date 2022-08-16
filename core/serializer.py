@@ -6,6 +6,9 @@ import json
 from requests import Response
 from core.models import BaseProductModel
 from .sekeer import Sekeer
+from textblob import TextBlob
+import re
+
 
 
 class BaseSerializer:
@@ -18,17 +21,16 @@ class BaseSerializer:
         
         if response and response.status_code == OK:
             response_data = json.loads(response.text)
-            open('data.json','w').write(
-                json.dumps(response_data,indent=2)
-            )
             dataset = Sekeer().find(response_data,self.query_dataset)
             sekeer = Sekeer()
-            
+            keyboard_list = TextBlob(keyboard).words
             
             if not dataset:
                 return serialize_data
             
             for data_item in dataset:
+                
+                name = sekeer.find(data_item,model.name)
                 
                 # Score
                 score = sekeer.find(data_item,model.score)
@@ -41,6 +43,7 @@ class BaseSerializer:
                 original_price = float(original_price.replace('.','')) if type(original_price) == str and original_price else original_price
 
                 actual_price = sekeer.find(data_item,model.actual_price)
+                actual_price = float(actual_price.replace('.','')) if type(actual_price) == str and actual_price else actual_price
                 #actual_price = actual_price if type(actual_price) != list else None
                 #actual_price = float(actual_price.replace('.','')) if type(actual_price) == str and actual_price else actual_price
 
@@ -58,27 +61,23 @@ class BaseSerializer:
                 preview = sekeer.find(data_item,model.preview)
                 preview = preview.replace('->',':') if type(preview) is str else preview
                 
-                #if actual_price or original_price:
-                serialize_data.append({
-                    'product':{
+                
+                if re.findall(r"(?=(\b" + '\\b|\\b'.join(keyboard_list) + r"\b))", name.lower()):
+                    serialize_data.append({
                         'id':sekeer.find(data_item,model.id),
-                        'pricing':{
-                            'actual_price':actual_price,
-                            'original_price':original_price,
-                            'is_descount':is_descount,
-                            'discount_label':discount_label
-                        },
+                        'actual_price':actual_price,
+                        'original_price':original_price,
+                        'is_descount':is_descount,
+                        'discount_label':discount_label,
                         'is_free_shipping':bool(sekeer.find(data_item,model.free_shipping)),
-                        'name':sekeer.find(data_item,model.name),
+                        'name':name,
                         'origin':origin,
                         'preview':preview,
                         'description':sekeer.find(data_item,model.description),
                         'score':score
-                        }
                     })
-                
+                    
         
         return serialize_data
-        #print(json.dumps(serialize_data,indent=2))
 
 

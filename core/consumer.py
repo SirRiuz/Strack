@@ -6,59 +6,57 @@ import json
 import grequests
 from gevent import monkey as curious_george
 import time
-
+from .storage import add_to_storage, get_to_storage
+from helpers.filter import filter_data
+from helpers.serielizer import get_serialize_data
 
 
 class BaseConsumer:
-
-
-    def __serialize_data(self,response_data:list,keyboard:str) -> (list):
-        
-        
-        item_list = []
-        provider_list = []
-        
-        for index in range(0,len(self.provider_list)):
-            provider_class = self.provider_list[index]
-            serializer_class = provider_class.serializer_class
-            response_object = response_data[index]
-            serializer_model = serializer_class.model
-                        
-            data = serializer_class().serialize(
-                keyboard=keyboard,
-                response=response_object,
-                model=serializer_model
-            )
-            
-            if len(data) > 0:
-                provider_list.append(str(provider_class))
-                
-            item_list += data
-            
-        
-        print(json.dumps({
-            'data':item_list,
-            'providers':provider_list    
-        },indent=2))
-            
-            
-            
-
+    
     
     def search(self,keyboard:str,cache:list=None,filter:object=None) -> (list):
-        inicio = time.time()
+        
+
         curious_george.patch_all(thread=False, select=False)
         req_list = []
+        response_list = []
         
-        for provider_class in self.provider_list:
-            prov_object = provider_class(keyboard=keyboard)
-            req_list.append(prov_object.get_request())
-            
-        response_list = grequests.map(req_list)
-        self.__serialize_data(response_list,keyboard)
         
+        products_data = []
+        providers_list = []
+        is_cache = False
+        
+        if not get_to_storage(keyboard):
+            for provider_class in self.provider_list:
+                prov_object = provider_class(keyboard=keyboard)
+                req_list.append(prov_object.get_request())
+                
+            response_list = grequests.map(req_list)
+            data = get_serialize_data(response_list,keyboard,self.provider_list)
+            products_data = data['data']
+            providers_list = data['providers']
+            add_to_storage(keyboard,data)
+        
+        else:
+            storage_data = get_to_storage(keyboard)
+            products_data = storage_data['data']
+            providers_list = storage_data['providers']
+            is_cache = True
+       
+       
+        sort_data = filter_data(products_data,options={})
+        
+        return {
+            'data':sort_data,
+            'providers':providers_list,
+            'is_cache':is_cache
+        }
+        
+        return 
         fin = time.time()
         print(f'\n{int(fin-inicio)}s\n')
 
+        
+        
         
         

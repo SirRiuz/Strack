@@ -25,7 +25,7 @@ class TestConsumer(BaseConsumer):
         Olimpica,
         Shopee,
         Movistar,
-        Tradeinn,
+        #Tradeinn,
         Olx,
         MacCenter,
         #Exito <- Obsoleto
