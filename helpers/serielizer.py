@@ -1,7 +1,7 @@
 
 
 def get_serialize_data(response_data:list,keyboard:str,providers:list) -> (list):
-        
+
     item_list = []
     provider_list = []
         
@@ -12,7 +12,7 @@ def get_serialize_data(response_data:list,keyboard:str,providers:list) -> (list)
         serializer_model = serializer_class.model
                         
         data = serializer_class().serialize(
-            keyboard=keyboard,
+            # keyboard=keyboard,
             response=response_object,
             model=serializer_model
         )
@@ -22,7 +22,8 @@ def get_serialize_data(response_data:list,keyboard:str,providers:list) -> (list)
                 
         item_list += data
     
-    return { 'data':item_list, 'providers':provider_list }
+    
+    return ({ 'data':item_list, 'providers':provider_list })
         
      
      

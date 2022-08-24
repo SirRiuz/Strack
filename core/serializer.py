@@ -6,8 +6,7 @@ import json
 from requests import Response
 from core.models import BaseProductModel
 from .sekeer import Sekeer
-from textblob import TextBlob
-import re
+
 
 
 
@@ -15,7 +14,11 @@ class BaseSerializer:
 
     query_dataset = None
 
-    def serialize(self,keyboard:str,response:Response,model:BaseProductModel) -> (list):
+    def serialize(
+        self,
+        response:Response
+        ,model:BaseProductModel
+    ) -> (list):
         
         serialize_data = []
         
@@ -23,14 +26,14 @@ class BaseSerializer:
             response_data = json.loads(response.text)
             dataset = Sekeer().find(response_data,self.query_dataset)
             sekeer = Sekeer()
-            keyboard_list = TextBlob(keyboard).words
+            # keyboard_list = TextBlob(keyboard).words
             
             if not dataset:
                 return serialize_data
             
             for data_item in dataset:
                 
-                name = sekeer.find(data_item,model.name)
+                name = sekeer.find(data_item,model.name).lower()
                 
                 # Score
                 score = sekeer.find(data_item,model.score)
@@ -62,8 +65,10 @@ class BaseSerializer:
                 preview = preview.replace('->',':') if type(preview) is str else preview
                 
                 
-                if re.findall(r"(?=(\b" + '\\b|\\b'.join(keyboard_list) + r"\b))", name.lower()):
-                    serialize_data.append({
+
+                #if True:
+                #if re.findall(r"(?=(\b" + '\\b|\\b'.join(keyboard_list) + r"\b))", name.lower()):
+                serialize_data.append({
                         'id':sekeer.find(data_item,model.id),
                         'actual_price':actual_price,
                         'original_price':original_price,
@@ -75,7 +80,7 @@ class BaseSerializer:
                         'preview':preview,
                         'description':sekeer.find(data_item,model.description),
                         'score':score
-                    })
+                })
                     
         
         return serialize_data
