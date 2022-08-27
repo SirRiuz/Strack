@@ -9,7 +9,7 @@ from core.serializer import BaseSerializer
 
 class AmazonSerializer(BaseSerializer):
     
-    query_dataset = 's-result-item s-asin sg-col sg-col-12-of-12 s-widget-spacing-small'
+    query_dataset = 'div::s-result-item s-asin sg-col sg-col-12-of-12 s-widget-spacing-small'
     content_type = 'html'
     # debug_response = True
         

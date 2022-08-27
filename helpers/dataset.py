@@ -23,12 +23,14 @@ class Dataset:
              score:5 -> Permite filtrar los datos segun su nivel de puntuacion
         """
         
-        word_list = keyboard.split(' ')
-        regex = r"\b({})\b".format("|".join(x for x in word_list))
+        #word_list = keyboard.split(' ')
+        #regex = r"\b({})\b".format("|".join(x for x in word_list))
          
         #print(keyboard)       
         pandas = pd.DataFrame(data)
-        pandas = pandas[pandas['name'].str.contains(regex)]
+        #print(keyboard)
+        #print(pandas['name'])
+        #pandas = pandas[pandas['name'].str.contains(regex)]
         pandas = pandas.sort_values('actual_price',ascending=False)
 
         KEYS_LIST = tuple(options.keys())

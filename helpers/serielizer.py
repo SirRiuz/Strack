@@ -4,7 +4,7 @@ def get_serialize_data(response_data:list,keyboard:str,providers:list) -> (list)
 
     item_list = []
     provider_list = []
-        
+            
     for index in range(0,len(providers)):
         provider_class = providers[index]
         serializer_class = provider_class.serializer_class

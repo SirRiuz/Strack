@@ -10,10 +10,9 @@ from core.sekeer import Sekeer
 def parse_price(price):
     price = price.replace('.','') if type(price) is str else price
     price = price.replace(',','') if type(price) is str else price
+    price = price.replace('COP $','') if type(price) is str else price
+    price = price.replace(' ','') if type(price) is str else price
     price = int(price) if type(price) is str else price
-
-    #price = price.replace(',','').replace('.','') if type(price) is str else price
-    # print(type(price),' -- ',price)
     return price
 
 
@@ -22,8 +21,11 @@ def parse_htm(html_data:str,dataset:str,model:BaseProductModel) -> (tuple):
     
     """ Se encarga de parcear una respuesta de tipo html """
     
+    split_query = dataset.split('::')
+    query = split_query[1]
+    tag = split_query[0]
     soup = BeautifulSoup(html_data,'html.parser')
-    dataset = soup.find_all('div',class_=dataset)
+    dataset = soup.find_all(tag,class_=query)
     data = []
 
     for item in dataset:
@@ -44,11 +46,13 @@ def parse_htm(html_data:str,dataset:str,model:BaseProductModel) -> (tuple):
         
         # Preview
         preview = item.find(class_=model.preview)['src']
-        name = item.find(class_=model.name).text.lower()
+        name = item.find(class_=model.name).text
+        name = name.lower() if name and type(name) is str else ''
         origin = item.find(class_=model.origin)['href']
         
+        
         data.append({
-            'name':name.lower(),
+            'name':name,
             'preview':preview,
             'origin':origin,
             'actual_price':parse_price(actual_price),
@@ -60,7 +64,7 @@ def parse_htm(html_data:str,dataset:str,model:BaseProductModel) -> (tuple):
             'discount_label':discount_label
         })
         
-        
+    
     return data
 
 
@@ -91,11 +95,12 @@ def parse_json(json_data:str,dataset:str,model:BaseProductModel) -> (tuple):
         
         preview = sekeer.find(item,model.preview)
         name = sekeer.find(item,model.name)
+        name = name.lower() if name and type(name) is str else ''
         origin = sekeer.find(item,model.origin)
         
 
         data.append({
-            'name':name.lower(),
+            'name':name,
             'preview':preview,
             'origin':origin,
             'actual_price':parse_price(actual_price),
