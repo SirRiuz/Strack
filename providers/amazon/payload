@@ -1,0 +1,12 @@
+
+accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9
+accept-encoding: gzip, deflate
+accept-language: es-US,es;q=0.9,en-US;q=0.8,en;q=0.7
+connection: keep-alive
+host: www.amazon.com
+sec-fetch-dest: document
+sec-fetch-mode: navigate
+sec-fetch-site: none
+x-requested-with: com.amazon.mShop.android.shopping
+user-agent: Amazon.com/24.15.2.100 (Android/11/Redmi Note 9S)
+cookie: mobile-device-info=dpi:440.0|w:1080|h:2254; session-id=133-8113091-7634049; ubid-main=133-0960268-7074522; sid=; session-id-time=2082787201l; skin=noskin; x-main="174K9Tf0bviONo5E4BN4jcaNalsdso2r1SVsxmwu2vRgdtQP6My?KPLpG@XTQWea"; at-main="Atza|IwEBICSuPbV56z7GYkzFwrdwaH6-emGsR3RRzcFkj_4GIDnVyO_JsMR18gobOGnoP5SPgCPapWVDl6rSmFRfqjYGrpHuXJCOsBjuA-j6_QvbjedT9grZ3fCyDaZICQSFkVmJP14gcRk5eHwN5NntoKcjRVWKoHdWfHw7HFzi5vPysFt43Yw9jGmltfFcmSKz_6Jbe4n7TMyKxdEDAfNiK9deRKn6SmjwyFBgskbCHNQz585IT2oHKjQAEpSe2ygX3enVxVCBKbC2QHfaP30l0oFFE4Z9GNIAcpq2RrEBdf5dQTWETSbJtlk646w8X-HPLBJVq_s"; sess-at-main="QiGfPKYJ7F6pvC2gupmON9AQIiAj2c+ckNPoJnWf2tE="; sp-cdn="L5Z9:CO"; s_cc=true; s_vnum=2091412962130%26vn%3D1; s_sq=%5B%5BB%5D%5D; lc-main=es_US; s_nr=1659413007280-New; s_dslv=1659413007306; s_ppv=100; i18n-prefs=COP; amzn-app-id=Amazon.com/24.15.2.100/18.0.206519.0; privacy-consent=%7B%22avlString%22%3A%22%22%2C%22gvlString%22%3A%22%22%2C%22amazonAdvertisingPublisher%22%3Atrue%7D; session-token="0SImsAGpDRJKhez0JA5Gyyr6NLR/w7mPCx5t2eL2SXLT6Drnn1dgV5ydh+OhttFQHciGqRoVVoAfvK4abN0AfNYm47pmhfMUbmCtUVvdm9/poIpbJwRl2/iMIijw9UKwqVZQeAxyPPvGL/V/LWXvHtF1qIBxF+o4Uo1pDWcTqF+iECvVpdbd+aSZVOFFxP1tOG7QaNd6RgqegBOq/EHN9MY+ZQs1byE+qR5hlXshUZh/MAFDYASuCQ=="; amzn-app-ctxt=1.8%20%7B%22an%22%3A%22Amazon.com%22%2C%22av%22%3A%2224.15.2.100%22%2C%22xv%22%3A%221.12.0%22%2C%22os%22%3A%22Android%22%2C%22ov%22%3A%2211%22%2C%22cp%22%3A17565976%2C%22uiv%22%3A4%2C%22ast%22%3A3%2C%22nal%22%3A%221%22%2C%22di%22%3A%7B%22pr%22%3A%22curtana_global%22%2C%22md%22%3A%22Redmi%20Note%209S%22%2C%22v%22%3A%22curtana%22%2C%22mf%22%3A%22Xiaomi%22%2C%22dsn%22%3A%22a9e96b4542904a419084da51c6e4d1f8%22%2C%22dti%22%3A%22A1MPSLFC7L5AFK%22%2C%22ca%22%3A%22%23CoberturaCLARO%22%2C%22ct%22%3A%22WIFI%22%7D%2C%22dm%22%3A%7B%22w%22%3A1080%2C%22h%22%3A2254%2C%22ld%22%3A2.75%2C%22dx%22%3A397.56500244140625%2C%22dy%22%3A395.843994140625%2C%22pt%22%3A0%2C%22pb%22%3A78%7D%2C%22is%22%3A%22com.android.vending%22%2C%22msd%22%3A%22.amazon.com%22%7D; csm-hit=P7W01594X3E6QCB4T2MX+s-P7W01594X3E6QCB4T2MX|1661367238213

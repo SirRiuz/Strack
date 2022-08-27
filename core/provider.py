@@ -31,6 +31,8 @@ class BaseProvider:
     
     
     def get_request(self) -> (grequests.AsyncRequest):
+        
+        header = {}
                 
         if self.__method == 'post':
             disable_warnings(InsecureRequestWarning)
@@ -42,10 +44,15 @@ class BaseProvider:
                 verify=False,
                 timeout=self.TIMEOUT
             )
-        
+            
+        if self.__payload:
+            header = parse_request(self.__payload)
+            header = header[0]
 
+        
         return grequests.get(
             self.__get_search_params(),
+            headers=header,
             timeout=self.TIMEOUT
         )
         

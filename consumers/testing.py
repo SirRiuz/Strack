@@ -3,6 +3,7 @@
 
 # libs
 from core.consumer import BaseConsumer
+from providers.amazon.provider import Amazon
 
 
 # Providers
@@ -22,10 +23,11 @@ from providers.linio.provider import Linio
 class TestConsumer(BaseConsumer):
     
     provider_list = [
+        Amazon,
         Olimpica,
         Shopee,
         Movistar,
-        #Tradeinn,
+        #Tradeinn,  <- Obsoleto
         Olx,
         MacCenter,
         #Exito <- Obsoleto

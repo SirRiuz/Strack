@@ -10,6 +10,7 @@ from core.serializer import BaseSerializer
 class TradeinnSerializer(BaseSerializer):
     
     query_dataset = 'results:0:hits'
+    debug_response = True
     
     class model(BaseProductModel):
         id:str = 'objectID'

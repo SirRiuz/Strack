@@ -4,6 +4,7 @@
 # Libs
 import grequests
 from gevent import monkey as curious_george
+from settings import DEBUG
 from .storage import add_to_storage, get_to_storage
 from helpers.dataset import Dataset
 from helpers.serielizer import get_serialize_data
@@ -38,7 +39,9 @@ class BaseConsumer:
             
             products_data = data['data']
             providers_list = data['providers']
-            add_to_storage(keyboard,data)
+            
+            if not DEBUG:
+                add_to_storage(keyboard,data)
         
         else:
             storage_data = get_to_storage(keyboard)

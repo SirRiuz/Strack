@@ -57,7 +57,7 @@ async def search(
             'size':len(pagination['results']),
             'next':pagination['next_url']
         },
-        'data':pagination['results'],
+        'data':result['data'],   #BUG
         'status':'ok'
     })
 

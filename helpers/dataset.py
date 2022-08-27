@@ -25,7 +25,8 @@ class Dataset:
         
         word_list = keyboard.split(' ')
         regex = r"\b({})\b".format("|".join(x for x in word_list))
-                
+         
+        #print(keyboard)       
         pandas = pd.DataFrame(data)
         pandas = pandas[pandas['name'].str.contains(regex)]
         pandas = pandas.sort_values('actual_price',ascending=False)
@@ -56,6 +57,7 @@ class Dataset:
         
         
         
+        #return data
         return json.loads(pandas.to_json(orient='table'))['data']
 
 
