@@ -1,18 +1,22 @@
 
 
+
+
 import json
-from consumers.testing import TestConsumer
+from core.sekeer import Sekeer
+from bs4 import BeautifulSoup
+import ast
 
-result = TestConsumer().search(
-    keyboard='iphone 13',
-    options={
-        'is_descount':False,
-        'is_free_shipping':False,
-        'range':'',
-        'score':None
-    }
+# bs = BeautifulSoup(open('data.html','r').read(),'html.parser')
+data = json.loads(open('data.json','r').read())
+result = Sekeer().find(
+    data=data,
+    query='<searchResult:original:products/>',
+    #type_render='html',
+    many=True
 )
+print(result)
 
-print(json.dumps(result,indent=2))
-
+# <span::a-spinner a-spinner-medium#many/>
+# <span::a-size-small a-color-base/>
 

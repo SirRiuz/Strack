@@ -1,7 +1,7 @@
 
 
 PROVIDER_URL = 'https://master--olimpica.myvtex.com/_v/private/graphql/v1?workspace=master'
-ORIGIN_URL = 'https->//www.olimpica.com/'
+ORIGIN_URL = 'https://www.olimpica.com/'
 
 BODY = r'''{
   "operationName": "PRODUCT_QUERY_NEW",

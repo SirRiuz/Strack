@@ -2,22 +2,22 @@
 
 # Libs
 from core.models import BaseProductModel
-from .settings import MEDIA_URL
 from core.serializer import BaseSerializer
+from providers.falabella.settings import MEDIA_URL
 
 
 
 class FalabellaSerializer(BaseSerializer):
     
-    query_dataset = 'data:results'
+    query_dataset = '<data:results/>'
         
     class model(BaseProductModel):
-        id:str = 'productId'
-        name:str = 'displayName'
-        origin:str = 'url'
-        actual_price:float = 'prices:0:price:0'
-        original_price:float = 'prices:1:price:0'
-        preview:str = f'{MEDIA_URL} + media:id'
+        name:str = '"<displayName/>".lower()'
+        origin:str = '"<url/>"'
+        actual_price:float = 'float("<prices:0:price:0/>".replace(".",""))'
+        original_price:float = 'float("<prices:1:price:0/>".replace(".","")) if "<prices:1:price:0/>" else None'
+        preview:str = f'"{MEDIA_URL}" + "<media:id/>"'
+        free_shipping:bool = 'False'
 
 
 

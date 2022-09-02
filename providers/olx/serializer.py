@@ -8,19 +8,18 @@ from core.serializer import BaseSerializer
 
 
 
-
 class OlxSerializer(BaseSerializer):
     
-    query_dataset = 'data'
+    query_dataset = '<data/>'
+    debug_response = True
             
     class model(BaseProductModel):
-        id:str = 'id'
-        name:str = 'title'
-        preview:str = 'images:0:url'
-        origin:str = f'{ORIGIN_URL} + :id'
-        actual_price:float = 'price:value:raw'
-        score = 'score'
-        description = 'description'
+        name:str = '"<title/>".lower()'
+        preview:str = '"<images:0:url/>"'
+        origin:str = f'"{ORIGIN_URL}" + "<id/>"'
+        actual_price:float = '<price:value:raw/>'
+        score = '<score/>'
+        # description = '"<description/>"'
 
 
 

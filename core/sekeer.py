@@ -1,18 +1,19 @@
 
 
 
-class Sekeer:
+import json
+from bs4.element import Tag
+import ast
+
+
+
+class Sekeer:    
     
     
-    CONCAT_OPERATOR = '+'
-    QUERY_OPERATOR = ':'
-    TRY_OPERATOR = '>'
-    REPLACE_OPERATOR = '#'
-    
-    
-    def __find(self,**kwargs) -> (str):
-        data = kwargs.get('data')
-        query = kwargs.get('query')
+    def __find_in_json(self,data:dict,query:str) -> (str):
+        
+        data = data
+        query = query
         
         try:
             for q in query.split(':'):
@@ -21,90 +22,104 @@ class Sekeer:
                 else:
                     if data:
                         data = data.get(q)
-                        
-            return data
+            
+
+            return str(data).replace('"','') if data else ''     # Error
         
         except:
-            return
-    
-    
-    def find(self,data:dict,query:str) -> (str):
+            return ''
         
-        query = query.replace(' ','')
         
-        if query.count(self.CONCAT_OPERATOR) > 0:
-            """
-              Se encarga de concatenar el valor
-              de una query con un string.
-                            
-              Example:
-                -> query:test + foo
-                -> value foo
-            """
-            query_list = query.split(self.CONCAT_OPERATOR)
-            query_result = ''
+    def __freeze_text(self,text:str) -> (str):
+        text = text.replace('"','')
+        return text
+        
+        
+    def __find_in_html(self,data,query:str,many:bool=False) -> (Tag):
+                
+        query_split_data = query.split('|')
+        query_data = query_split_data[0]
+        query_params = query_split_data[1].replace(' ','') if len(query_split_data) > 1 else None        
+        query_split = query_data.split('::')
+        tag_name = query_split[0]
+        tag_class = query_split[1]
+
+
+        if many:
+            return data.find_all(tag_name,class_=tag_class)
+        
+        if query_params:
+            return data.find(tag_name,class_=tag_class).get(query_params)
+        
+        
+        return self.__freeze_text(
+            data.find(tag_name,class_=tag_class).text
+        ) if data.find(tag_name,class_=tag_class) else ''
+      
+        
+
+    def __parse_query(self,query) -> (tuple):
+        
+        cap = False
+        str_query = ''
+        query = query
+        str_query_list = []        
+
+        for index in range(0,len(query)):
             
-            for i in query_list:
-                if i.count(self.QUERY_OPERATOR) > 0:
-                    i = i
-                    if i.startswith(':'):
-                        i = i[1::]
-                        
-                    find_result = self.__find(
-                        data=data,
-                        query=i
+            if query[index] == '<':
+                cap = True
+        
+            if query[index] == '/':
+                cap = False
+                str_query_list.append(
+                    str_query[0:len(str_query) - 1]
+                )
+                str_query = ''
+                
+            if cap:
+                str_query = str_query + query[index + 1]
+                
+        return tuple(str_query_list)   
+    
+    
+    def find(self,data:dict,query:str,type_render='json',many=False) -> (str):
+
+        try:
+            if type_render == 'json':
+                str_query_list = self.__parse_query(query)
+                _query = query
+                for query in str_query_list:
+                    _query = _query.replace(
+                        f'<{query}/>',
+                        self.__find_in_json(
+                            data=data,
+                            query=query
+                        )
                     )
-                    if find_result:
-                        query_result += find_result
                     
-                    
-                else:
-                    query_result += i
-            
-            return query_result
-        
-        
-        if query.count(self.TRY_OPERATOR) > 0:
-            """
-              Este operador se encarga de probar una lista querys 
-              y solo retornara el  valor de una sola query si es 
-              diferente de None , de lo contrario seguira probando
-              con las demas hasta que la lista termine o 
-              el valor sea diferente de None
-            """
-            query_list = query.split(self.TRY_OPERATOR)
-            
-            for q in query_list:
-                find_result = self.__find(data=data,query=q)
-                if find_result:
-                    return find_result
+                return eval(_query)
                 
                 
-        if query.count(self.REPLACE_OPERATOR) > 0:
-            """
-              Este operador se encarga de reemplazar un valor
-              determinado con nada.
-              
-              Example:
-                -> query:test#replace this
-                -> "value query (replacedis)"#replace this
-                -> value query
-            """
-            query_result = ''
-            query_list = query.split(self.REPLACE_OPERATOR)
-            replace = query_list[1]
-            find_result = self.__find(
-                data=data,
-                query=query_list[0]
-            )
-            
-            query_result = str(find_result).replace(replace,'')
-            return query_result        
+                
+            if many:
+                query = self.__parse_query(query)[0]
+                return self.__find_in_html(
+                    data=data,
+                    query=query,
+                    many=True
+                )
+
+
+            str_query_list = self.__parse_query(query)
+            _query = query
+            for query in str_query_list:
+                _query = _query.replace(
+                    f'<{query}/>',str(self.__find_in_html(data=data,query=query))
+                )
+
+            return eval(_query)
         
-        return self.__find(data=data,query=query)
-
-
-
-
-
+        except Exception as e:
+            pass
 

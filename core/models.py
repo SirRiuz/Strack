@@ -4,16 +4,16 @@
 
 class BaseProductModel:
     
-    id:str = 'value'
-    name:str = 'value'
-    preview:str = 'value'
-    origin:str = 'value'
-    actual_price:float = 'value'
-    original_price:float = 'value'
-    free_shipping:bool = 'value'
-    score:float = 'value'
-    description:str = 'value'
-    discount_label:str = 'value'
+    id:str = 'None'
+    name:str = 'None'
+    preview:str = 'None'
+    origin:str = 'None'
+    actual_price:float = 'None'
+    original_price:float = 'None'
+    free_shipping:bool = 'None'
+    score:float = 'None'
+    description:str = 'None'
+    discount_label:str = 'None'
 
 
 
