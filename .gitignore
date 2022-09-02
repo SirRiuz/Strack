@@ -3,5 +3,4 @@ __pycache__
 *.pyo
 main.py
 data.json
-providers/ebay
 storage/*
