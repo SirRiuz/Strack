@@ -16,6 +16,7 @@ from providers.falabella.provider import Falabella
 from providers.shopee.provider import Shopee
 from providers.mercadolibre.provider import MercadoLibre
 from providers.linio.provider import Linio
+from providers.mac_center.provider import MacCenter
 
 
 class TestConsumer(BaseConsumer):
@@ -30,6 +31,8 @@ class TestConsumer(BaseConsumer):
         Movistar,
         Amazon,
         Ebay,
+        MacCenter,
+
     )
 
 

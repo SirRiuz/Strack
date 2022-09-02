@@ -29,9 +29,10 @@ class Pagination:
             MIN_DATA = INFO['min']
             NEXT_URL = f'{BASE_URL}api/v1/search/?q={QUERY}&min={MIN_DATA}&max={MAX_DATA}'
         
+        
         return ({
             'next_url':NEXT_URL,
-            'results':self.__data[self.__min:10]
+            'results':self.__data[MIN_DATA:MAX_DATA ]
         })
     
 

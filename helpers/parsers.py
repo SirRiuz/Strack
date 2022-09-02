@@ -97,17 +97,17 @@ def parse_json(json_data:str,dataset:str,model:BaseProductModel) -> (tuple):
     
     sekeer = Sekeer()
     data = []
-    dataset = sekeer.find(json.loads(json_data),dataset)
-    
+    dataset = sekeer.find(json.loads(json_data),dataset,many=True)
+        
     
     for item in (dataset if dataset else []):
-                
+                        
         # discount
         actual_price = sekeer.find(item,model.actual_price)
         original_price = sekeer.find(item,model.original_price)
         discount_label = sekeer.find(item,model.discount_label)
-        is_discount = bool(discount_label) or bool(actual_price and original_price)
-        is_discount = False if actual_price == original_price else True
+        #is_discount = bool(discount_label) or bool(actual_price and original_price)
+        is_discount = bool(actual_price and original_price)
         
         free_shipping = bool(sekeer.find(item,model.free_shipping))
         score = sekeer.find(item,model.score)

@@ -11,11 +11,11 @@ import ast
 data = json.loads(open('data.json','r').read())
 result = Sekeer().find(
     data=data,
-    query='<searchResult:original:products/>',
+    query='"<items/>"',
     #type_render='html',
     many=True
 )
-print(result)
+print(data)
 
 # <span::a-spinner a-spinner-medium#many/>
 # <span::a-size-small a-color-base/>

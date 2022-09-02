@@ -10,7 +10,7 @@ import ast
 class Sekeer:    
     
     
-    def __find_in_json(self,data:dict,query:str) -> (str):
+    def __find_in_json(self,data:dict,query:str,many:bool=False) -> (str):
         
         data = data
         query = query
@@ -23,7 +23,9 @@ class Sekeer:
                     if data:
                         data = data.get(q)
             
-
+            if many:
+                return data
+            
             return str(data).replace('"','') if data else ''     # Error
         
         except:
@@ -89,6 +91,16 @@ class Sekeer:
             if type_render == 'json':
                 str_query_list = self.__parse_query(query)
                 _query = query
+                
+                if many:
+                    many_data = self.__find_in_json(
+                        data=data,
+                        query=str_query_list[0],
+                        many=True
+                    )
+                    return many_data
+
+                
                 for query in str_query_list:
                     _query = _query.replace(
                         f'<{query}/>',
@@ -121,5 +133,6 @@ class Sekeer:
             return eval(_query)
         
         except Exception as e:
+            #print(e)
             pass
 

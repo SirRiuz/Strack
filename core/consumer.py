@@ -51,7 +51,11 @@ class BaseConsumer:
        
         
         return ({
-            'data':products_data,
+            'data':Dataset.filter(
+                data=products_data,
+                options=options,
+                keyboard=keyboard
+            ),
             'providers':providers_list,
             'is_cache':is_cache,
             'query':keyboard.replace(' ','+')
