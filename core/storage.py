@@ -20,7 +20,7 @@ def get_to_storage(query:str) -> (dict):
         now = datetime.datetime.now()
         result = now - create
         
-        if result.days >= 5 or result.days < 0:
+        if result.days >= 1 or result.days < 0:
             os.remove(STORAGE_ITEM_DIR)
             return
             

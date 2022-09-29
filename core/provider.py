@@ -12,7 +12,7 @@ from urllib3.exceptions import InsecureRequestWarning
 class BaseProvider:
     
     serializer_class = None
-    TIMEOUT = 2
+    TIMEOUT = 2.5
     
     def __init__(self,**kwargs):
         self.__payload = kwargs.get('payload','')

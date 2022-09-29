@@ -26,10 +26,15 @@ class Dataset:
         if not data:
             return []
         
-        
+
+        words = keyboard.split(' ')
+        regex = r"\b({})\b".format("|".join(x for x in words))
+                
         pandas = pd.DataFrame(data)
-        pandas = pandas[pandas['name'].str.contains(keyboard)]
+        pandas['words-match'] = pandas['name'].str.extract(regex,expand=False).str.split(' ')
+        pandas = pandas[pandas['words-match'].notnull()]
         pandas = pandas.sort_values('actual_price',ascending=False)
+
 
         KEYS_LIST = tuple(options.keys())
         VALUES_LIST = tuple(options.values())
@@ -55,13 +60,5 @@ class Dataset:
         
         
         
-        #return data
         return json.loads(pandas.to_json(orient='table'))['data']
-
-
-
-
-
-
-
 

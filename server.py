@@ -6,9 +6,18 @@ from fastapi import FastAPI, Request
 from consumers.testing import TestConsumer
 from core.pagination import Pagination
 import time
+from fastapi.middleware.cors import CORSMiddleware
+
 
 
 app = FastAPI()
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=['*'],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 
 @app.get("/api/v1/search/")

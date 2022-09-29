@@ -28,7 +28,7 @@ class TestConsumer(BaseConsumer):
         Olx,
         Shopee,
         Olimpica,
-        Movistar,
+        #Movistar,     Obsoleto
         Amazon,
         Ebay,
         MacCenter,
