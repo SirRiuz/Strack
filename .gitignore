@@ -3,4 +3,5 @@ __pycache__
 *.pyo
 main.py
 data.json
+data.html
 storage/*

@@ -59,6 +59,6 @@ class Dataset:
 
         
         
-        
-        return json.loads(pandas.to_json(orient='table'))['data']
+        return data
+        #return json.loads(pandas.to_json(orient='table'))['data']
 

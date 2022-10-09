@@ -3,7 +3,7 @@
 # Libs
 from core.models import BaseProductModel
 from core.serializer import BaseSerializer
-from providers.linio.settings import ORIGIN_URL
+from providers.linio.settings import ORIGIN_URL, PROVIDER_ICON
 
 
 class LinioSerializer(BaseSerializer):
@@ -20,6 +20,7 @@ class LinioSerializer(BaseSerializer):
         original_price:float = 'float("<previousPrice/>")'
         score:float = '<seller:rating/>'
         preview: str = '"<image/>"'
+        provider_icon:str =  f'"{PROVIDER_ICON}"'
         origin: str = f'"{ORIGIN_URL}" + "/<path/>".replace("/mapi/","")'
 
 

@@ -3,6 +3,7 @@
 # Libs
 from core.models import BaseProductModel
 from core.serializer import BaseSerializer
+from providers.mercadolibre.settings import PROVIDER_ICON
 
 
 
@@ -20,6 +21,7 @@ class MeliSerializer(BaseSerializer):
         score:float = '<reviews:rating_average/>'
         free_shipping:bool = '"<tags:0/>" == "free_shipping"'
         discount_label:str = '"<price:discount_label:text/>"'
+        provider_icon:str = f'"{PROVIDER_ICON}"'
         
         
 

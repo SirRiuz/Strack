@@ -22,16 +22,16 @@ from providers.mac_center.provider import MacCenter
 class TestConsumer(BaseConsumer):
     
     provider_list = (
-        Linio,
-        Falabella,
-        MercadoLibre,
-        Olx,
-        Shopee,
-        Olimpica,
-        #Movistar,     Obsoleto
-        Amazon,
-        Ebay,
-        MacCenter,
+        #Linio,
+        #Falabella,
+        #MercadoLibre,
+        #Olx,
+        #Shopee,
+        #Olimpica,
+        # #Movistar,     Obsoleto
+        #Amazon,
+        #Ebay,           Obsoleto
+        #MacCenter,      Obsoleto
 
     )
 

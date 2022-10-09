@@ -14,6 +14,7 @@ class BaseProductModel:
     score:float = 'None'
     description:str = 'None'
     discount_label:str = 'None'
+    provider_icon:str = 'None'
 
 
 

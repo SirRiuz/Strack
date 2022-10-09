@@ -5,6 +5,7 @@ import json
 from bs4 import BeautifulSoup
 from core.models import BaseProductModel
 from core.sekeer import Sekeer
+from urllib.parse import urlparse
 
 
 
@@ -83,7 +84,8 @@ def parse_htm(html_data:str,dataset:str,model:BaseProductModel) -> (tuple):
                 type_render='html',
                 many=False
             ),
-            'score':score
+            'score':score,
+            'provider_origin':urlparse(origin).netloc
         })
     
     return data
@@ -111,6 +113,9 @@ def parse_json(json_data:str,dataset:str,model:BaseProductModel) -> (tuple):
         
         free_shipping = bool(sekeer.find(item,model.free_shipping))
         score = sekeer.find(item,model.score)
+
+        provider_icon = sekeer.find(item,model.provider_icon)
+
         #score = score if score else 0
         #score = 5 if score > 5 else score
         description = sekeer.find(item,model.description)
@@ -131,7 +136,9 @@ def parse_json(json_data:str,dataset:str,model:BaseProductModel) -> (tuple):
             'is_free_shipping':free_shipping,
             'score':score,
             'description':description,
-            'discount_label':discount_label
+            'discount_label':discount_label,
+            'provider_origin':urlparse(origin).netloc,
+            'provider_icon':provider_icon
         })
         
     

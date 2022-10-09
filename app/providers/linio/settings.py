@@ -7,5 +7,5 @@ BODY = '{ "q": "query_keyboard","searchResults": false,"sortBy": "relevance", "p
 PAYLOAD_DIR = 'providers/linio/payload'
 BASE_URL = 'https://i.linio.com'
 ORIGIN_URL = 'https://linio.com.co'
-
+PROVIDER_ICON = 'https://assets.linio.com/images/favicon-by-fb-1f05deec69.png'
 

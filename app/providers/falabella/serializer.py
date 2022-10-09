@@ -3,7 +3,7 @@
 # Libs
 from core.models import BaseProductModel
 from core.serializer import BaseSerializer
-from providers.falabella.settings import MEDIA_URL
+from providers.falabella.settings import MEDIA_URL, PROVIDER_ICON
 
 
 
@@ -18,6 +18,7 @@ class FalabellaSerializer(BaseSerializer):
         original_price:float = 'float("<prices:1:price:0/>".replace(".","")) if "<prices:1:price:0/>" else None'
         preview:str = f'"{MEDIA_URL}" + "<media:id/>"'
         free_shipping:bool = 'False'
+        provider_icon:str = f'"{PROVIDER_ICON}"'
 
 
 

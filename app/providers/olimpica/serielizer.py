@@ -4,7 +4,7 @@
 # Libs
 from core.models import BaseProductModel
 from core.serializer import BaseSerializer
-from providers.olimpica.settings import ORIGIN_URL
+from providers.olimpica.settings import ORIGIN_URL, PROVIDER_ICON
 
 
 
@@ -20,6 +20,7 @@ class OLimpicaSerializer(BaseSerializer):
         actual_price:float = '<priceRange:sellingPrice:lowPrice/>'
         origin:str = f'"{ORIGIN_URL}" + "<productId/>"'
         preview:str = '"<items:0:images:0:imageUrl/>"'
+        provider_icon:str = f'"{PROVIDER_ICON}"'
 
 
 
