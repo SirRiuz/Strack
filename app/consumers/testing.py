@@ -9,6 +9,8 @@ from providers.ebay.provider import Ebay
 
 # Providers
 from providers.linio.provider import Linio
+from providers.medellinfit.provider import Medellinfit
+from providers.miproteina.provider import Miproteina
 from providers.olimpica.provider import Olimpica
 from providers.olx.provider import Olx
 from providers.movistar.provider import Movistar
@@ -22,17 +24,18 @@ from providers.mac_center.provider import MacCenter
 class TestConsumer(BaseConsumer):
     
     provider_list = (
-        #Linio,
-        #Falabella,
-        #MercadoLibre,
-        #Olx,
-        #Shopee,
-        #Olimpica,
+        Amazon,
+        Medellinfit,
+        Miproteina,
+        Linio,
+        Falabella,
+        MercadoLibre,
+        Olx,
+        Shopee,
+        Olimpica,
         # #Movistar,     Obsoleto
-        #Amazon,
         #Ebay,           Obsoleto
         #MacCenter,      Obsoleto
-
     )
 
 

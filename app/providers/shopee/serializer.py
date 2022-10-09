@@ -4,7 +4,7 @@
 # Libs
 from core.models import BaseProductModel
 from core.serializer import BaseSerializer
-from providers.shopee.settings import MEDIA_URL, ORIGIN_URL
+from providers.shopee.settings import MEDIA_URL, ORIGIN_URL, PROVIDER_ICON
 
 
 
@@ -23,6 +23,7 @@ class ShopeeSerializer(BaseSerializer):
         actual_price:float = 'float("<item_basic:price/>".replace("00000",""))'
         score:float = '<item_basic:item_rating:rating_star/>'
         free_shipping:bool = '<item_basic:show_free_shipping/>'
+        provider_icon:str = f'"{PROVIDER_ICON}"'
 
 
 

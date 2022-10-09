@@ -32,6 +32,13 @@ def parse_htm(html_data:str,dataset:str,model:BaseProductModel) -> (tuple):
             type_render='html',
             many=False
         )
+        provider_icon = sekeer.find(
+            data=item,
+            query=model.provider_icon,
+            #type_render='html',
+            #many=False
+        )
+
                 
         origin = sekeer.find(
             data=item,
@@ -84,6 +91,7 @@ def parse_htm(html_data:str,dataset:str,model:BaseProductModel) -> (tuple):
                 type_render='html',
                 many=False
             ),
+            'provider_icon':provider_icon,
             'score':score,
             'provider_origin':urlparse(origin).netloc
         })

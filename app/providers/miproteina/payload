@@ -1,0 +1,15 @@
+Host: meilisearch.ziuxlab.com
+Content-Length: 145
+Sec-Ch-Ua: "Not;A=Brand";v="99", "Chromium";v="106"
+Content-Type: application/json
+Authorization: Bearer FdUGVYgB28d763b107d648b6ed503e33d0996b157410246bc1669a8946f90a7a6c21a455
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.5249.62 Safari/537.36
+Sec-Ch-Ua-Platform: "Linux"
+Accept: */*
+Origin: https://miproteina.com.co
+Sec-Fetch-Site: cross-site
+Sec-Fetch-Mode: cors
+Sec-Fetch-Dest: empty
+Referer: https://miproteina.com.co/
+Accept-Encoding: gzip, deflate
+Accept-Language: en-US,en;q=0.9

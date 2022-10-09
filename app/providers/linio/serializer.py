@@ -12,7 +12,6 @@ class LinioSerializer(BaseSerializer):
     debug_response = True
     
     class model(BaseProductModel):
-        
         name:str = '"<name/>".lower()'
         free_shipping:bool = '"<hasFreeShipping/>"'
         discount_label: str = 'str(int(<percentageOff/>)) + "%"'
