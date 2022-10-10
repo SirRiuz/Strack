@@ -25,7 +25,7 @@ async def search(
     request:Request,
     q:Union[str,None]='Unknow',
     min:Union[int,None]=0,
-    max:Union[int,None]=5,
+    max:Union[int,None]=20,
     
     # Filter params
     is_descount:Union[bool,None]=False,
@@ -63,10 +63,10 @@ async def search(
             'data-providers':result['providers']
         },
         'pagination':{
-            'size':len(pagination['results']),
-            'next':pagination['next_url']
+            'size-page':len(pagination['data']),
+            'next':pagination['next']
         },
-        'data':pagination['results'],
+        'data':pagination['data'],
         'status':'ok'
     })
 

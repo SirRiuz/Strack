@@ -17,43 +17,34 @@ class Pagination:
         
         
     def paginate(self) -> (dict):
-        INFO = self.__get_pagination_info()
-        NEXT_URL = None
-        MAX_DATA = 0
-        MIN_DATA = 0
-        
-        if INFO:
-            BASE_URL = self.__context['base_url']
-            QUERY = self.__context['query']
-            MAX_DATA = INFO['max']
-            MIN_DATA = INFO['min']
-            NEXT_URL = f'{BASE_URL}api/v1/search/?q={QUERY}&min={MIN_DATA}&max={MAX_DATA}'
-        
-        
-        return ({
-            'next_url':NEXT_URL,
-            'results':self.__data[MIN_DATA:MAX_DATA ]
-        })
-    
+        pagInfo = self.__get_pagination_info()
+        print(pagInfo)
 
+        min = pagInfo['min']
+        max = pagInfo['max']
+
+        BASE_URL = self.__context['base_url']
+        QUERY = self.__context['query']
+        MIN_DATA = pagInfo['next']['min']
+        MAX_DATA = pagInfo['next']['max']
+        NEXT = f'{BASE_URL}api/v1/search/?q={QUERY}&min={MIN_DATA}&max={MAX_DATA}'
+
+        if MIN_DATA > len(self.__data):
+            NEXT = None
+
+    
+        return ({
+            'next':NEXT,
+            'data':self.__data[min:max]
+        })
 
     
     def __get_pagination_info(self) -> (dict):
-        
-        MIN_NEXT = self.__max + 1
-        MAX_NEXT = 0
-        
-        if not self.__max > len(self.__data):
-            for _ in range(self.__min ,self.__max):
-                MAX_NEXT = MAX_NEXT + 1
-                
-        else:
-            return
-
-
-        MAX_NEXT = MAX_NEXT + MIN_NEXT     
-        
         return ({
-            'min':MIN_NEXT,
-            'max':MAX_NEXT
+            'min':self.__min,
+            'max':self.__max,
+            'next':{
+                'min':self.__max + 1,
+                'max':self.__max + ( self.__max - self.__min )
+            }
         })

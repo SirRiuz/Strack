@@ -16,7 +16,7 @@ class MedellinfitSerializer(BaseSerializer):
 
     class model(BaseProductModel):
         name:str = '"<h3::product-name/>".lower()'
-        actual_price:float = 'float("<span::woocommerce-Price-amount amount/>".replace("$",""))'
+        actual_price:float = 'int("<span::woocommerce-Price-amount amount/>".replace("$","").replace(".",""))'
         preview:str = '"<img::attachment-woocommerce_thumbnail size-woocommerce_thumbnail|src/>"'
         origin:str = '"<a::woocommerce-LoopProduct-link woocommerce-loop-product__link|href/>"'
         provider_icon:str = f'"{PROVIDER_ICON}"'
