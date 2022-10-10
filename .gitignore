@@ -4,4 +4,4 @@ __pycache__
 main.py
 data.json
 data.html
-storage/*
+app/storage/*
