@@ -12,7 +12,6 @@ from urllib.parse import urlparse
 def parse_htm(html_data:str,dataset:str,model:BaseProductModel) -> (tuple):
     
     """ Se encarga de parcear una respuesta de tipo html """
-    
     sekeer = Sekeer()    
     soup = BeautifulSoup(html_data,'html.parser')
     dataset = sekeer.find(
@@ -25,7 +24,6 @@ def parse_htm(html_data:str,dataset:str,model:BaseProductModel) -> (tuple):
 
 
     for item in dataset:
-        
         score = sekeer.find(
             data=item,
             query=model.score,
@@ -60,8 +58,7 @@ def parse_htm(html_data:str,dataset:str,model:BaseProductModel) -> (tuple):
             type_render='html',
             many=False
         )
-        
-        
+
         data.append({
             'name':sekeer.find(
                 data=item,
@@ -93,8 +90,9 @@ def parse_htm(html_data:str,dataset:str,model:BaseProductModel) -> (tuple):
             ),
             'provider_icon':provider_icon,
             'score':score,
-            'provider_origin':urlparse(origin).netloc
+            'provider_origin':urlparse(origin).netloc if origin else ''     # Solving fix
         })
+
     
     return data
 

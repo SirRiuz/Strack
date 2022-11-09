@@ -18,7 +18,6 @@ class Pagination:
         
     def paginate(self) -> (dict):
         pagInfo = self.__get_pagination_info()
-        print(pagInfo)
 
         min = pagInfo['min']
         max = pagInfo['max']

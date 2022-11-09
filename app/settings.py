@@ -2,8 +2,13 @@
 
 
 
+# BACKEND SETTINGS
+
 DEBUG = False
 API_VERSION = 'api/v1'
 STORAGE_DIR = 'storage'
 
+
+
+# AWS CREDENTIALS
 

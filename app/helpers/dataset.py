@@ -4,6 +4,8 @@
 import json
 import pandas as pd
 
+from settings import DEBUG
+
 
 
 class Dataset:
@@ -25,7 +27,7 @@ class Dataset:
         
         if not data:
             return []
-        
+
 
         words = keyboard.split(' ')
         regex = r"\b({})\b".format("|".join(x for x in words))
@@ -57,7 +59,8 @@ class Dataset:
                 if VALUES_LIST[item_index]:
                     pandas = pandas.sort_values(KEYS_LIST[item_index],ascending=False)
 
-        
+        if DEBUG:
+            return data
         
         return json.loads(pandas.to_json(orient='table'))['data']
 
