@@ -4,4 +4,6 @@ __pycache__
 main.py
 data.json
 data.html
+app/data.*
 app/storage/*
+app/providers/gtech

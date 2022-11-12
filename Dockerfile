@@ -1,17 +1,17 @@
 
-
 FROM python:3.9
 
-WORKDIR /app
 
-COPY . .
+WORKDIR app/
 
-RUN dir
+COPY app/ .
+
 RUN pip install --no-cache-dir --upgrade -r requirements.txt
 
+EXPOSE 80
 
+CMD ["uvicorn","server:app","--host","0.0.0.0","--port","80"]
 
-CMD ["cd","app/","uvicorn", "server:app", "--host", "0.0.0.0", "--port", "80"]
 
 
 

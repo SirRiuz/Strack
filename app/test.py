@@ -1,22 +1,21 @@
 
+import boto3
+from settings import AWS_ACCESS_KEY_ID,AWS_SECRET_ACCESS_KEY
+from core.storage import *
+
+# client = boto3.client(
+#     's3',
+#     aws_access_key_id=AWS_ACCESS_KEY_ID,
+#     aws_secret_access_key=AWS_SECRET_ACCESS_KEY,
+# )
+# print(client.get_object(
+#     Bucket='itrack-font',
+#     Key='pol.html'
+# ))
+
+add_to_storage('this is a storage',{
+    'data':'hello world'
+})
 
 
-
-import json
-from core.sekeer import Sekeer
-from bs4 import BeautifulSoup
-import ast
-
-# bs = BeautifulSoup(open('data.html','r').read(),'html.parser')
-data = json.loads(open('data.json','r').read())
-result = Sekeer().find(
-    data=data,
-    query='"<items/>"',
-    #type_render='html',
-    many=True
-)
-print(data)
-
-# <span::a-spinner a-spinner-medium#many/>
-# <span::a-size-small a-color-base/>
 
