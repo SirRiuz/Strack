@@ -6,7 +6,6 @@ from core.consumer import BaseConsumer
 from providers.amazon.provider import Amazon
 from providers.clonesyperifericos.provider import Clonesyperifericos
 from providers.ebay.provider import Ebay
-from providers.gtech.provider import Gtech
 
 
 # Providers

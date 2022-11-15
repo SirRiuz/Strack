@@ -16,6 +16,11 @@ STORAGE_DIR = os.path.join(BASE_DIR,'storage')
 SERVICE_DIR = os.path.join(BASE_DIR,'services')
 
 
+if not os.path.exists(STORAGE_DIR):
+    os.mkdir(STORAGE_DIR)
+
+
+
 
 # AWS CREDENTIALS
 AWS_SECRET_ACCESS_KEY = 'DZGPxbN0SjewL1MmGDHiJ9C7RNq3dAXn9R0fJ0+W'
