@@ -7,7 +7,7 @@
 import os
 
 
-DEBUG = False
+DEBUG = True
 #API_VERSION = 'api/v1'
 
 
