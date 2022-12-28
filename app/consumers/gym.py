@@ -23,17 +23,17 @@ from providers.mac_center.provider import MacCenter
 from providers.speedlogic.provider import Speedlogic
 
 
-class TestConsumer(BaseConsumer):
+class GymConsumer(BaseConsumer):
     
     provider_list = (
-        Clonesyperifericos,
-        Speedlogic,
-        # Amazon,
-        # Medellinfit,
-        # Miproteina,
-        #Linio,
-        # Falabella,
-        # MercadoLibre,
+        #Clonesyperifericos,
+        #Speedlogic,
+        Amazon,
+        Medellinfit,
+        Miproteina,
+        Linio,
+        Falabella,
+        MercadoLibre,
         # Olx,
         # Shopee,
         # Olimpica,

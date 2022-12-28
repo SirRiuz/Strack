@@ -6,7 +6,6 @@ import grequests
 from gevent import monkey as curious_george
 from settings import DEBUG
 from .storage import add_to_storage, get_to_storage
-from helpers.dataset import Dataset
 from helpers.serielizer import get_serialize_data
 
 
@@ -51,11 +50,7 @@ class BaseConsumer:
        
         
         return ({
-            'data':Dataset.filter(
-                data=products_data,
-                options=options,
-                keyboard=keyboard
-            ),
+            'data':products_data,
             'providers':providers_list,
             'is_cache':is_cache,
             'query':keyboard.replace(' ','+')

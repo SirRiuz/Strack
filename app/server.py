@@ -7,10 +7,12 @@ from consumers.testing import TestConsumer
 from core.pagination import Pagination
 import time
 from fastapi.middleware.cors import CORSMiddleware
+from core.clasification import Clasification
 
 
 
 app = FastAPI()
+clasification = Clasification()
 app.add_middleware(
     CORSMiddleware,
     allow_origins=['*'],
@@ -35,7 +37,7 @@ async def search(
 ):
     
     start = time.time()
-    result = TestConsumer().search(
+    result = clasification.get_provider(q).search(
         keyboard=q.lower(),
         options={
             'is_descount':is_descount,
@@ -60,7 +62,8 @@ async def search(
             'cache':result['is_cache'],
             'query':result['query'],
             'time-response':f'{int(end - start)}s',
-            'data-providers':result['providers']
+            'data-providers':result['providers'],
+            'category':clasification.category
         },
         'pagination':{
             'size-page':len(pagination['data']),
