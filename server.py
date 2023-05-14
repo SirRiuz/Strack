@@ -8,7 +8,7 @@ from core.pagination import Pagination
 import time
 from fastapi.middleware.cors import CORSMiddleware
 from core.clasification import Clasification
-
+from consumers.electronic import ElectronicConsumer
 
 
 app = FastAPI()
@@ -37,7 +37,7 @@ async def search(
 ):
     
     start = time.time()
-    result = clasification.get_provider(q).search(
+    result = ElectronicConsumer().search(
         keyboard=q.lower(),
         options={
             'is_descount':is_descount,
