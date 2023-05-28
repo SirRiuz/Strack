@@ -7,3 +7,4 @@ data.html
 app/data.*
 app/storage/*
 app/providers/gtech
+.env

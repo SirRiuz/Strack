@@ -1,18 +1,11 @@
-
-
-
-
 # Libs
 from core.models import BaseProductModel
-from providers.mac_center.settings import (PROVIDER_BASE_URL)
+from providers.maccenter.settings import (PROVIDER_BASE_URL)
 from core.serializer import BaseSerializer
-
-
 
 class CenterSerailizer(BaseSerializer):
     
     query_dataset = '<items/>'
-
         
     class model(BaseProductModel):
         name:str = '"<displayName/>".lower()'

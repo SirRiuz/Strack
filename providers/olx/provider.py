@@ -1,23 +1,12 @@
-
-
-
-
 # Settings
 from providers.olx.serializer import OlxSerializer
-from .settings import PROVIDER_URL
-
+from providers.olx.settings import PROVIDER_URL
 
 # Libs
 from core.provider import BaseProvider
 
 
-
 class Olx(BaseProvider):
-        
-    serializer_class = OlxSerializer
-        
+    serializer_class = OlxSerializer        
     def __init__(self,**kwargs):
         super().__init__(**kwargs,url=PROVIDER_URL)
-        
-        
-

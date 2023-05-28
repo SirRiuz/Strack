@@ -7,14 +7,11 @@ from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
 
 # Libs
-from consumers.testing import TestConsumer
 from core.pagination import Pagination
-from core.clasification import Clasification
 from consumers.electronic import ElectronicConsumer
 
 
 app = FastAPI()
-clasification = Clasification()
 app.add_middleware(
     CORSMiddleware,
     allow_origins=['*'],
@@ -22,6 +19,7 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+provider = ElectronicConsumer()
 
 @app.get("/api/v1/search/")
 async def search(
@@ -38,7 +36,7 @@ async def search(
 ):
     
     start = time.time()
-    result = ElectronicConsumer().search(
+    result = provider.search(
         keyboard=q.lower(),
         options=({
             'is_descount':is_descount,
@@ -63,7 +61,6 @@ async def search(
             'query':result['query'],
             'time-response':f'{int(end - start)}s',
             'data-providers':result['providers'],
-            'category':clasification.category
         },
         'pagination':{
             'size-page':len(pagination['data']),
