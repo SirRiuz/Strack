@@ -11,7 +11,6 @@ from providers.shopee.settings import (
 class ShopeeSerializer(BaseSerializer):
     query_dataset = '<data:items_response:items/>'
     debug_response = True
-        
     class model(BaseProductModel):
         id:str = 'item_basic:itemid'
         name:str = '"<item_basic:name/>".lower()'
@@ -23,6 +22,3 @@ class ShopeeSerializer(BaseSerializer):
         score:float = '<item_basic:item_rating:rating_star/>'
         free_shipping:bool = '<item_basic:show_free_shipping/>'
         provider_icon:str = f'"{PROVIDER_ICON}"'
-
-
-
