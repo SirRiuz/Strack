@@ -1,15 +1,14 @@
-
-
-
 # Libs
 from core.models import BaseProductModel
 from core.serializer import BaseSerializer
-from providers.shopee.settings import MEDIA_URL, ORIGIN_URL, PROVIDER_ICON
-
+from providers.shopee.settings import (
+    MEDIA_URL,
+    ORIGIN_URL,
+    PROVIDER_ICON
+)
 
 
 class ShopeeSerializer(BaseSerializer):
-    
     query_dataset = '<data:items_response:items/>'
     debug_response = True
         

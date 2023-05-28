@@ -1,0 +1,12 @@
+accept-encoding: gzip
+connection: Keep-Alive
+cookie: SPC_CLIENTID=DPOpcPLTbIM3V/pdsquqvvrkzztbbbiu; UA=Shopee%20Android%20Beeshop%20locale%2Fes-CO%20version%3D966%20appver%3D30124; SPC_AFTID=00000000-0000-0000-0000-000000000000; language=es-CO; shopee_app_version=30124; language=es-CO; SPC_DID=DPOpcPLTbIM3V/pdNZIfZV1pZuVQkHNxRLeewI1q13g=; SPC_F=830d37f693799cc0_unknown; SPC_F=830d37f693799cc0_unknown; REC_T_ID=9b6beb8c-e9c5-11ed-8370-2cea7fafb008; SPC_RNBV=5077002; SPC_SI=6gZaZAAAAABOdGo3YnkyS0ZneAAAAAAAQ1pwSmdRVm4=; userid=1001446561; shopee_token=cg9hsSsVxvlRXUnH+4/0+tVQKHXomiuN9N1CY1Ja01Qhu6ZqqZxQaMspaot8H4zn; username=z8g2o3vi72; shopee_token=cg9hsSsVxvlRXUnH+4/0+tVQKHXomiuN9N1CY1Ja01Qhu6ZqqZxQaMspaot8H4zn; shopee_rn_version=1683881128; SPC_U=1001446561; SPC_ST=.QTFDUWdWN05qZVhiT0ZLbfcTNTkrF0ubAe3E7nW5ugtVzD40D6bWvvp8U7//KCzoJgcALLLW4j/5n3vO1ZJ2AZsiDrHmRi7gnsRLU6IcBa+y8Ar1wmUtzOmsBhtlJr0jZww9duIbEc7vEs0WlvnKjjUSXJ3keN5jJVrMeLYmmufKdvDtvNMBI/3FIZU5I+rlpXupenWOvfgxOlSvVvcGLw==; SPC_R_T_ID=jIRSRchJxkVSy4nxriLEo87HbI0Pfwi78Hlk78Qe+MEDJ4atmPXC6stFqzn04f0bYFWzjZDTLC7z7+NFySwofxTWhUiDFlNA38dFMwwB2tu5/1sBNqkeB3AlmhzdmqGX+yi4WTzXYwyMBrv0cd4nGQd2PQbm9HahEtZ4kdNO8+o=; SPC_R_T_IV=R2tMRVM1Wno0S1V0bHo4Zw==; SPC_T_ID=jIRSRchJxkVSy4nxriLEo87HbI0Pfwi78Hlk78Qe+MEDJ4atmPXC6stFqzn04f0bYFWzjZDTLC7z7+NFySwofxTWhUiDFlNA38dFMwwB2tu5/1sBNqkeB3AlmhzdmqGX+yi4WTzXYwyMBrv0cd4nGQd2PQbm9HahEtZ4kdNO8+o=; SPC_T_IV=R2tMRVM1Wno0S1V0bHo4Zw==; csrftoken=VHGUN0LHQu4zfb9lnQFVXu2q1qPJSUSe; SPC_EC=Q3BwcEZ4aXo4SlM2NzJJVEqL6kvDI2pUNLRq+F3lD/Ec2FXyxIAm7Cl4jHvoCvii1VqLZjEH+hBAJQN02lvKHRj7Cwr9qYn2d8tVyUfIsRW8+/ahXKKJ8hjBQr2z8k90IifxglghGhzQd6eMEoXzPVCLhf9nVgxXfbh/4c4UWfU=
+host: mall.shopee.com.co
+referer: https://mall.shopee.com.co
+shopee_http_dns_mode: 1
+user-agent: Android app Shopee appver=30124 app_type=1
+x-api-source: rn
+x-phone-brand: Xiaomi
+x-phone-model: Redmi Note 9S
+x-sap-access-t: 1684116292
+x-shopee-client-timezone: America/Bogota

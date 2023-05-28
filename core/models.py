@@ -3,7 +3,6 @@
 
 
 class BaseProductModel:
-    
     id:str = 'None'
     name:str = 'None'
     preview:str = 'None'

@@ -1,11 +1,6 @@
-
-
-
-
 # Settings
 from providers.shopee.serializer import ShopeeSerializer
-from .settings import PROVIDER_URL
-
+from .settings import PROVIDER_URL, PAYLOAD_DIR
 
 # Libs
 from core.provider import BaseProvider
@@ -13,11 +8,12 @@ from core.provider import BaseProvider
 
 
 class Shopee(BaseProvider):
-        
-    serializer_class = ShopeeSerializer
-        
+    serializer_class = ShopeeSerializer 
     def __init__(self,**kwargs):
-        super().__init__(**kwargs,url=PROVIDER_URL)
+        super().__init__(
+            **kwargs,
+            payload=PAYLOAD_DIR,
+            url=PROVIDER_URL)
         
         
 
