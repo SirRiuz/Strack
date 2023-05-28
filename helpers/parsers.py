@@ -1,27 +1,25 @@
-
-
-# Libs
+# Python
 import json
 from bs4 import BeautifulSoup
-from core.models import BaseProductModel
-from core.sekeer import Sekeer
 from urllib.parse import urlparse
 
 
+# Libs
+from core.models import BaseProductModel
+from core.sekeer import Sekeer
 
-def parse_htm(html_data:str,dataset:str,model:BaseProductModel) -> (tuple):
-    
+
+def parse_htm(html_data:str, dataset:str,
+             model:BaseProductModel) -> (tuple):
     """ Se encarga de parcear una respuesta de tipo html """
+    data = []
     sekeer = Sekeer()    
     soup = BeautifulSoup(html_data,'html.parser')
     dataset = sekeer.find(
         data=soup,
         query=dataset,
         many=True,
-        type_render='html',
-    )
-    data = []
-
+        type_render='html')
 
     for item in dataset:
         score = sekeer.find(
@@ -32,32 +30,28 @@ def parse_htm(html_data:str,dataset:str,model:BaseProductModel) -> (tuple):
         )
         provider_icon = sekeer.find(
             data=item,
-            query=model.provider_icon,
-            #type_render='html',
-            #many=False
-        )
+            query=model.provider_icon)
 
                 
         origin = sekeer.find(
             data=item,
             query=model.origin,
             type_render='html',
-            many=False
-        )
+            many=False)
         
-        origin = origin.replace('%','/') if origin else origin
+        origin = origin.replace('%','/') if \
+            origin else origin
+
         original_price = sekeer.find(
             data=item,
             query=model.original_price,
             type_render='html',
-            many=False
-        )
+            many=False)
         actual_price = sekeer.find(
             data=item,
             query=model.actual_price,
             type_render='html',
-            many=False
-        )
+            many=False)
 
         data.append({
             'name':sekeer.find(
@@ -93,45 +87,30 @@ def parse_htm(html_data:str,dataset:str,model:BaseProductModel) -> (tuple):
             'provider_origin':urlparse(origin).netloc if origin else ''     # Solving fix
         })
 
-    
     return data
 
 
-
-
-def parse_json(json_data:str,dataset:str,model:BaseProductModel) -> (tuple):
-    
+def parse_json(json_data:str, dataset:str,
+              model:BaseProductModel) -> (tuple):
     """ Se encarga de parcear una respuesta de tipo JSON """
-    
     sekeer = Sekeer()
     data = []
-    dataset = sekeer.find(json.loads(json_data),dataset,many=True)
-        
-    
-    for item in (dataset if dataset else []):
-                        
-        # discount
+    dataset = sekeer.find(json.loads(
+        json_data),dataset,many=True)
+
+    for item in (dataset if dataset else []):                        
         actual_price = sekeer.find(item,model.actual_price)
         original_price = sekeer.find(item,model.original_price)
         discount_label = sekeer.find(item,model.discount_label)
-        #is_discount = bool(discount_label) or bool(actual_price and original_price)
-        is_discount = bool(actual_price and original_price)
-        
+        is_discount = bool(actual_price and original_price)        
         free_shipping = bool(sekeer.find(item,model.free_shipping))
         score = sekeer.find(item,model.score)
-
         provider_icon = sekeer.find(item,model.provider_icon)
-
-        #score = score if score else 0
-        #score = 5 if score > 5 else score
         description = sekeer.find(item,model.description)
-        
         preview = sekeer.find(item,model.preview)
         name = sekeer.find(item,model.name)
-        #name = name.lower() if name and type(name) is str else ''
         origin = sekeer.find(item,model.origin)
         
-
         data.append({
             'name':name,
             'preview':preview,
@@ -150,7 +129,3 @@ def parse_json(json_data:str,dataset:str,model:BaseProductModel) -> (tuple):
     
     
     return data
-
-
-
-

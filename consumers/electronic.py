@@ -21,6 +21,7 @@ from providers.mercadolibre.provider import MercadoLibre
 from providers.linio.provider import Linio
 from providers.mac_center.provider import MacCenter
 from providers.speedlogic.provider import Speedlogic
+from providers.alkosto.provider import Alkosto
 
 
 class ElectronicConsumer(BaseConsumer):
@@ -37,10 +38,22 @@ class ElectronicConsumer(BaseConsumer):
         Olx,
         Shopee,
         Olimpica,
-        # #Gtech,     #Very low
-        # #Movistar,     Obsoleto
-        # Ebay,           #Obsoleto
-        # #MacCenter,      Obsoleto
+        Alkosto
+        # Clonesyperifericos,
+        # Speedlogic,
+        # Amazon,
+        # Medellinfit,
+        # Miproteina,
+        # #Linio,
+        # Falabella,
+        #MercadoLibre,
+        # Olx,
+        # Shopee,
+        # Olimpica,
+        # # #Gtech,     #Very low
+        # # #Movistar,     Obsoleto
+        # # Ebay,           #Obsoleto
+        # # #MacCenter,      Obsoleto
     )
 
 

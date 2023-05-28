@@ -8,8 +8,8 @@ from providers.falabella.settings import MEDIA_URL, PROVIDER_ICON
 
 
 class FalabellaSerializer(BaseSerializer):
-    
     query_dataset = '<data:results/>'
+    debug_response = True
         
     class model(BaseProductModel):
         name:str = '"<displayName/>".lower()'

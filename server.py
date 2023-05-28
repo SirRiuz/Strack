@@ -1,12 +1,14 @@
+# Python
+import time
+from typing import Union
 
+# FastApi
+from fastapi import FastAPI, Request
+from fastapi.middleware.cors import CORSMiddleware
 
 # Libs
-from typing import Union
-from fastapi import FastAPI, Request
 from consumers.testing import TestConsumer
 from core.pagination import Pagination
-import time
-from fastapi.middleware.cors import CORSMiddleware
 from core.clasification import Clasification
 from consumers.electronic import ElectronicConsumer
 
@@ -20,7 +22,6 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
-
 
 @app.get("/api/v1/search/")
 async def search(
@@ -39,22 +40,21 @@ async def search(
     start = time.time()
     result = ElectronicConsumer().search(
         keyboard=q.lower(),
-        options={
+        options=({
             'is_descount':is_descount,
             'is_free_shipping':is_free_shipping,
             'range':range,
             'score':score
-        }
+        })
     )
     pagination = Pagination(
         min=min,max=max,data=result['data'],
-        context={
+        context=({
             'base_url':request.base_url,
             'query':result['query']
-        }
-    ).paginate()
-    end = time.time()
+        })).paginate()
     
+    end = time.time()
     
     return ({
         'meta':{
@@ -69,9 +69,5 @@ async def search(
             'size-page':len(pagination['data']),
             'next':pagination['next']
         },
-        'data':pagination['data'],
-        'status':'ok'
+        'data':pagination['data']
     })
-
-
-
