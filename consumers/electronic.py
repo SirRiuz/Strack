@@ -13,5 +13,6 @@ class ElectronicConsumer(BaseConsumer):
         'amazon',
         'linio',
         'falabella',
-        'ebay'
+        'ebay',
+        'home_center'
     )
