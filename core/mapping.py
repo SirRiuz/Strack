@@ -1,8 +1,10 @@
 # Python
 import os
+import inspect
 
 # Libs
 from settings import PROVIDERS_DIR
+from core.provider import BaseProvider
 
 
 class Mapping:
@@ -49,8 +51,11 @@ class Mapping:
             namespace = ({'__name__': '__main__'})
             exec(data, namespace)
             
-            provider_class = namespace.get(provider.capitalize())
-            providers_list.append(provider_class)
-            
+            for n , item in namespace.items():
+                if inspect.isclass(item) and \
+                    issubclass(item, BaseProvider) and \
+                        item != BaseProvider:
+                            
+                    providers_list.append(item)
+                    
         return providers_list
-    

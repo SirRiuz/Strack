@@ -10,7 +10,7 @@ from core.burpeer import parse_request
 
 class BaseProvider:
     serializer_class = None
-    TIMEOUT = 5.5
+    TIMEOUT = 6.5
     
     def __init__(self, **kwargs):
         self.__payload = kwargs.get('payload', '')

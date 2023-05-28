@@ -1,7 +1,4 @@
 
-
-
-
 class BaseProductModel:
     id:str = 'None'
     name:str = 'None'
@@ -16,4 +13,6 @@ class BaseProductModel:
     provider_icon:str = 'None'
 
 
-
+class BaseCommand:
+    command:str
+    def run(): ...
